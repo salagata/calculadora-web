@@ -3,5 +3,5 @@ const button = document.getElementById("send");
 const output = document.getElementById("output")
 
 button.onclick = () => {
-    output.innerHTML = stack
+    output.innerHTML = eval(input.value)
 }
