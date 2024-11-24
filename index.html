@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Web</title>
+    <link rel="stylesheet" href="./styles/calc.css">
 </head>
 <body>
     <input type="text" id="input">
     <button id="send">=</button>
-    <p id="output"></p>
+    <label for="debug">Debug Mode:</label>
+    <input type="checkbox" name="debug" id="debug">
+    <dl id="output">
+        <dt>Tokens:</dt>
+        <dd id="tokens"></dd>
+        <dt>PostFix:</dt>
+        <dd id="postfix"></dd>
+        <dt>Evaluated:</dt>
+        <dd id="eval"></dd>
+        <dt>Format:</dt>
+        <dd id="format"></dd>
+    </dl>
     
     <script src="./scripts/stack.js"></script>
-    <script src="./scripts/alu.js"></script>
     <script src="./scripts/instruccion.js"></script>
-    <script src="./scripts/postfixed.js"></script>
+    <script src="./scripts/tokenizate.js"></script>
     <script src="./scripts/evaluate.js"></script>
+    <script src="./scripts/format.js"></script>
     <script src="./scripts/io.js"></script>
 </body>
 </html>

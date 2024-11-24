@@ -1,0 +1,467 @@
+;; Bienvenido a Mathscript
+;; El lenguaje de programacion que busca parecerse lo mas posible al lenguaje matematico
+
+;; esto es un comentaraio
+;;; esto es 
+un multicomentario ;;;
+5 + 5 ;;; no hay comando para imprimir en la consola, solo debes poner una 
+expresion que tenga un retval y se imprimira en la consola el valor de 
+retorno ;;;
+
+:: 5 + 5 ;;; Poner :: al inicio de la expresion hara que la salida NO sea 
+impresa en la consola ;;;
+
+;;;;;;;;;;;;;;;;;
+;; 1.          ;;
+;; Operaciones ;;
+;;;;;;;;;;;;;;;;;
+
+;; 1.0         ;;
+;; Operaciones ;;
+
+1 + 1 ;; Suma
+2 - 1 ;; Resta
+5 * 3 ;; Multiplicacion
+10 / 2 ;; Division
+
+10 % 3 ;; Modulo
+2 ^ 3 ;; Potencia
+√(16) ;; Raiz cuadrada
+3√(16) ;; Es una multiplicacion de raiz cuadrada
+
+|-5| ;; Valor absoluto
+
+⌈5.6⌉ ;; Techo
+⌊5.2⌋ ;; Suelo
+⌈5.3⌋ ;; Redondeo
+
+;; Logica, devuelve un valor proporcional ⊤: Verdadero, ⊥: Falso
+
+5 = 5 ;; Igual
+;; 5 == 5 ;; NO EXISTE, arrojara un error
+;; Y ahora como asignamos variables, lo veremos en la seccion de variables y estructuras
+
+7 > 5 ;; Mayor 
+
+6 ≥ 9 ;; Mayor o igual
+;; 6 >= 9 ;; NO EXISTE, arrojara un error
+
+5 ≠ 6 ;; No Igual 
+5 != 6 ;; ¿5 factorial es igual a 6? 
+
+_PI ≈ 3 ;; Aproximado
+
+;; 1.1                      ;;
+;; Jerarquia de Operaciones ;;
+
+44 / 11 + 33 * (5 + 3) - 5 ^ (1 * (2)√4)  ;; Salida: 193
+4 + 264 - 5 ^ (1 * 2) ;; Parentesis
+4 + 264 - 5 ^ 2 ;; Potencia y Radicacion
+268 - 25 ; Multiplicacion y Division
+243 ;; Suma y Resta
+
+;; 1.2            ;;
+;; Tipos de datos ;;
+
+;; Existen 9 tipos de datos principales, 4 numericos, 3 de arrays, 1 de string y 1 de boolean
+
+10 ;; Numeros
+2:4 ;; Razones
+;; 3x + 2 ;; Polinomios
+(1,4) ;; Intervalo, NECESITA SER HABILITADO EL (n,k) PARA USARSE COMO EL COEFICIENTE BINOMIAL Y NO COMO INTERVALO
+{3,4,5} ;; Conjuntos
+[3,4,2,3] ;; Vector, SE PUEDE DESHABILITAR, se puede usar el vector de 1-dimension como estadistica
+10° ;; Magnitudes, SE PUEDE DESHABILITAR
+"a" ;; Existen las strings pero se reservan para conjuntos y estructuras de datos, SE PUEDE DESHABILITAR
+
+;; 1.2.1            ;;
+;; Tipos de Numeros ;;
+
+
+:: -3 ;; Enteros (Integer)
+::   10 ;; Naturales (Unsigned Integer)
+::   ;; Los tipicos de (Nibble,Byte,Short,Int,Long)
+::   10e+100 ;;; Enteros en notacion exponencial 
+::           Sin perdida: (CustomExponencial)
+::           Con perdida: (Integer Float, Integer Double)
+::           SIN DECIMALES ;;;
+::   10e+4000 ;; Enteros aun mas grandes, los calculos tardaran mas
+::   0 ;; El cero, Si se pone 0.0 se convertira a Entero
+:: 5/2 ;; Racionales (Float)
+::   1//2 ;;; Fracciones, Se trabajan como un nuevo tipo de dato pero se pueden 
+::       convertir a decimales, SE ESTA USANDO DOBLE BARRA;;
+::   3.5 ;; Decimales (Decimal) para valores pequeños que no usan coma flotante
+::   0.(3) ;;; Decimales Periodicos (Decimal) se trabajaran como decimales 
+::         periodicos, lo que esta dentro de () es la parte periodica ;;;
+::   4e-230 ;;; Decimales con mas decimales (Float, Double) para valores mas 
+::          pequeños o con mas precision ;;;
+::   2:4 ;; Razones, las veremos mas tarde
+:: _EULER ;; Reales (Float), mas adelante vemos las constantes
+::   √2 ;; Construibles (CustomFact), la suma entre ellos se hara factorizada
+::   2 ^ (1/3) ;; Algebraicos (CustomEqn), la suma entre ellos se hara factorizada
+::   _EULER ;; Computable, Definible (Float, Double) 
+::  _PI ;; Trascendentes (Float, Double)
+:: 3 + i ;; Complejos (Complex)
+::   4i ;; Imaginarios (Depende), las operaciones son similares pero con un i al final
+::   1 + i ;; Complejos (Complex)
+;;   4 + 2i - 5j + 8k ;; Hipercomplejos (HyperComplex), NECESITA SER HABILITADO PARA USAR
+
+;; 1.2.2      ;;
+;; Polinomios ;;
+
+;; Al asignar variables, se recomienda que sean de 2 caracteres para que no se 
+;; confundan con monomios
+
+;; Monomios
+;; Se puede usar cualquier letra como la parte literal si estan habilitados
+;; Por cada variable de la parte literal SOLO se puede usar 1 expresion alfabetica, Siempre 
+;; que no sea o inicie con un underscore "_"
+
+;; -3x^2 ;; Monomio comun, la potencia debe estar al LADO DE LA PARTE literal
+;; (-3x)^2 ;; Estas elevando el monomio -3x, a la potencia de 2
+;; -3^2x ;; Por defecto, los exponentes NUNCA pueden ser monomios, se leera, 
+;;       ;; -(3 al cuadrado)(x), para evitar errores de lectura mejor
+;;       ;; haz esto: -(3^2)x, tambien funciona.
+;; Para elevar un numero a un polinomio se hace asi 
+;; -3^(2x) ;; Con el parentesis, se leera: -(3 elevado a la potencia de 2x)
+;; -3x2 ;; Poner un numero INMEDIATAMENTE despues de una variable es una 
+;;      ;; multiplicacion, -(3 por 2)x
+;; xxx  ;; No te asustes, es una multiplicacion: x^3
+;; -3x~2 ;; Para poner subindices se usa el caracter ~
+
+;; Polinomios
+
+;; 3x^2 + 4yx - 2y^2 ;; Un polinomio sencillo
+;; -3(x^2 + y^2) ;; Se hace la propiedad distributiva: -3x^2 - 3y^2
+;; (x + y)^2 ;; Es una identidad: x^2 + 2xy + y^2
+;; x + x + x ;; Se simplifica: 3x
+;; 2x/3y ;; Se devolvera como fraccion 
+;; 3i ;; Es un numero imaginario, SE PUEDE DESHABILITAR
+
+;; Por defecto, los polinomios NO se simplifican al ser asignados
+;; o devueltos, pero se puede habilitar el autosimplificado
+
+;; 1.2.3      ;;
+;; Intervalos ;;
+
+;; Suele ser la solucion a inecuaciones
+;; SE PUEDE DESHABILITAR PERO LAS INECUACIONES DEVOLVERAN UN CONJUNTO
+
+(1,3) ;; Un intervalo abierto entre 1 y 3
+(,1,3,) ;; Un intervalo cerrado entre 1 y 3
+(,1,3) ;; Un intervalo semiabierto entre 1 y 3, del lado de donde este la coma extra sera el lugar abierto
+(1,_INFINITY,) ;; Un intervalo semiabierto entre 1 y el infinito positivo
+(,-_INFINITY,1) ;; Un intervalo semiabierto entre el infinito negativo y 1 
+
+;; 1.2.4     ;;
+;; Conjuntos ;;
+
+;; Teoria de los conjuntos
+;; Son agrupaciones de datos
+;; NO pueden contener datos duplicados
+
+{1,2,3} ;; Un conjunto por expresion basico que contiene los numeros 1,2 y 3
+{"a","e","i","o","u"} ;; Un conjunto por expresion basico que contiene las letras a,e,i,o,u
+{{1,2,3},{"a","b","c"},0.5,0.6,0.7} ;; Un conjunto que contiene conjuntos
+
+;; Comprension
+
+{x/x ∊ _NATURAL,x < 10 ∧ x % 2 = 0} ;; Un conjunto por comprension que contiene los numeros 2,4,6,8
+;; El _NATURAL es un conjunto de los numeros naturales,
+;; Logica proporcional (otra vez)
+;; El "∧" significa "y"
+;; El "∨" significa "o"
+
+;; Obtener los elementos de una lista
+;; Utiliza el operador subindice para obtener el elemento numero N de un conjunto/vector
+
+{"a",⊤,3}~1 ;; devolvera "a", aqui los conjuntos inician en el indice 1 (igual que Lua)
+
+;; Conjunto Vacio
+;; Es el conjunto que no tiene elementos
+
+∅ ;; Representa el conjunto Vacio
+_VOID ;; Tambien representa el conjunto Vacio
+{} ;; Esto representa un conjunto Vacio pero se le pueden añadir datos
+{∅} ;; el conjunto que contiene un conjunto vacio, ya no es un conjunto vacio
+    ;; porque contiene un elemento
+
+;; Conjuntos infinitos
+;; Son conjuntos que tienen infinitos elementos,
+;; Por defecto, los conjuntos numericos son infinitos
+
+_NATURAL ;; Numeros naturales
+_INTEGER ;; Numeros Enteros
+_RATIONAL ;; Numeros racionales
+_REAL ;; Numeros reales
+_COMPLEX ;; Numeros complejos, AL DESHABILILITAR NUMEROS COMPLEJOS, ESTE CONJUNTO 
+;; SE VUELVE UN CONJUNTO VACIO
+
+;; Tambien existen otros conjuntos infinitos especiales 
+
+_ALGEBRAIC ;; Numeros algebraicos
+_HYPERCOMPLEX ;; Hipercomplejos, NECESITA SER HABILITADO
+_TRASCENDENT ;; Numeros trascendentes 
+_IRRATIONAL ;; Numeros irracionales
+_NEGATIVE_INTEGER ;; Numeros enteros negativos
+_NEGATIVE_RATIONAL ;; Numeros racionales negativos
+_NEGATIVE_REAL ;; Numeros reales negativos
+_NEGATIVE_IRRATIONAL ;; Numeros irracionales negativos
+
+;; Se pueden definir conjuntos infinitos por comprension
+{x/x ∊ _REAL,1 > x > 0} ;; Un conjunto infinito de los numeros reales entre 0 y 1
+;; Operaciones de conjuntos
+
+;; Union e Interseccion
+
+{1,2,3,4} ∪ {3,4,5,6} ;; Resultado: {1,2,3,4,5,6}
+{1,2,3,4} ∩ {3,4,5,6} ;; Resultado: {3,4}
+
+;; Conjunto Universo
+;; Es el conjunto que contiene todos los elementos que se pueden considerar
+;; Representa el conjunto mas grande dentro de un contexto en especifico
+__UNIVERSE
+;; Lo veremos mas a detalle en la seccion variable
+
+;; Diferencia
+
+;; Representa todos los elementos unicos del conjunto A que NO pertenecen al conjunto B
+
+{1,2,3,4,5} - {4,5} ;; Resultado: {1,2,3}
+
+;; Diferencia Simetrica
+
+;; Representa todos los elementos unicos de cada conjunto que no sea comun entre ambos
+
+{1,2,3,4,5} ∆ {4,5,6,7} ;; Resultado: {1,2,3,6,7}
+
+;; Producto cartesiano
+
+;; Es el conjunto de todos los pares ordenados {a,b}
+{1,2,3} * {4,5} ;; Resultado: {{1,4},{2,4},{3,4},{1,5},{2,5},{3,5}}
+
+;; Evita hacer operaciones de complemento o diferencia con conjuntos infinitos
+;; NO SE RECOMIENDA hacer producto cartesiano de dos conjuntos infinitos a menos
+;; que te arriesges al consumo de memoria (funcionara pero no se recomienda)
+
+;; _NATURAL - {1} ;; Funciona pero no es recomendado de hacer
+
+;; Para ver la longitud de un conjunto se usa el gato
+#{1,2,3} ;; Resultado: 3
+
+;; 1.2.5                         ;;
+;; Vectores, Matrices y Tensores ;;
+
+;; Los vectores son colecciones de datos, pueden contener cualquier tipo de dato repetido
+
+[5,3,2,5,4] ;; Los vectores se pueden usar como puntos en el espacio o cordenadas cartesianas
+
+[5,4,2,2,4,5,2] ;; Pero los vectores tambien se pueden usar como listas de datos
+                ;; SOLO SI ES HABILITADO
+
+;; Los veremos mas adelante en Estadistica y Regresion Lineal
+
+["a","b","c"] ;; Los vectores tambien pueden contener strings pero YA NO se 
+              ;; podran usar como vectores ni tablas de estadistica
+              ;; sera usado como lista 
+
+;; Matrices
+;; Son Vectores que contienen vectores en TODOS sus elementos
+
+[[1,2,3],[5,3,1],[4,6,4]] ;; Una matriz 3x3
+
+;; Matrices diagonales
+;; Son matrices que tienen numeros en forma diagonal y 0 en el resto
+
+[[4,0,0],
+[0,9,0],
+[0,0,2]] ;; Matriz diagonal de 3x3
+
+;; Matrices escalares
+;; Son matrices que tienen EL MISMO numeros en diagonal y 0 en el resto
+
+[[3,0,0],
+[0,3,0],
+[0,0,3]] ;; Matriz escalar de 3 dimension 3x3
+
+;; Matriz identidad
+;; Es la matriz que tiene 1 en diagonal y 0 en el resto, es equivalente a 1
+
+[[1,0,0],
+[0,1,0],
+[0,0,1]] ;; Matriz identidad 3x3
+
+[[1,0,0],[0,1,0],[0,0,1]] = 1 ;; Es verdad
+
+;; Matriz nula
+;; Es la matriz que tiene 0 en TODOS los terminos, equivale a 0
+
+[[0,0,0],[0,0,0],[0,0,0]] ;; Una matriz nula de 3x3
+
+;; Tensores
+;; Son vectores generalizados de n dimensiones, 
+
+[
+    [
+        [3,4,5],
+        [9,6,3],
+        [7,8,1]
+    ],
+    [
+        [6,23,3],
+        [-5,3,-52],
+        [6,-54,-5]
+    ],
+    [
+        [66,-2,0],
+        [5,32,-65],
+        [-23,89,100]
+    ]
+] ;; Un tensor de 3 dimensiones que contiene 3 matrices, 3x3x3
+
+;; No abuse de los tensores con dimensiones muy grandes, o los calculos consumiran mucha memoria 
+
+;; Suma y resta de matrices,vectores y Tensores
+
+[2,4,3] + [5,3,2] = [7,7,5] ;; Verdadero
+[[2,3],[5,3]] + [[6,3],[5,1]] = [[8,6],[10,4]] ;; Verdadero
+
+;; Multiplicacion de matrices por escalar
+
+[[5,3],[1,2]] * 2 = [[10,6],[2,4]]
+
+;; 1.2.6                     ;;
+;; Magnitudes y proporciones ;;
+
+;; Mathscript contiene muchisimas magnitudes por defecto
+;; SE PUEDE ELEJIR CUALES DESHABILITAR Y TRABAJAR COMO SIMPLES
+;; POLINOMIOS
+
+;; Magnitudes Auxiliares
+
+50% ;; Porcentajes
+60° ;; Grados 
+40$ ;; Monedas
+50B ;; Bytes
+30hz ;; Hercios
+
+;; Magnitudes Fundamentiales
+
+30L ;; Litros
+40kg ;; Kilogramos
+600m ;; Metros
+50A ;; Amperios
+400k ;; Kelvin
+25cd ;; Candelas
+40mol ;; Mol
+70s ;; Segundos
+
+;; Magnitudes Derivadas
+
+40V ;; Voltios
+800N ;; Newtons
+20Pa ;; Pascales
+220Ω ;; Ohmios
+
+;; Hay mas magnitudes pero vienen por defecto deshabilitadas
+
+;; Tambien puedes crear tus propias magnitudes para resolver diferentes
+;; ejercicios de Regla de 3 
+
+;; Se pueden hacer operaciones simples
+
+20L + 50L = 70L
+
+;; Operaciones especiales
+
+40 * 50% ;; Es lo mismo que decir, 50% de 40
+5A * 220Ω ;; Ley de Ohm, A*Ω=V, 1100V
+1L + 1m ;; Litro, Metro y Kilogramo son medidas relacionadas, se convertiran automaticamente
+        ;; 1L + 1000L = 1001L
+
+;; 1.2.7               ;;
+;; Logica proporcional ;;
+
+;; Es un sistema para analizar y conectar afirmaciones, determinando su valor mediante 
+;; reglas y operadores logicos
+;; Constantes 
+
+⊤ ;; Es el valor verdadero
+_TRUE ;; Tambien es el valor verdadero
+⊥ ;; Es el valor falso
+_FALSE ;; Tambien es el valor falso
+
+;; Operaciones 
+_TRUE ∧ _FALSE ;; ∧ Conjuncion
+_TRUE ∨ _FALSE;; ∨ Disjuncion
+¬_TRUE ;; ¬ Negacion
+_TRUE ⇒ _FALSE ;; ⇒ Implicacion
+_TRUE ⇔ _FALSE ;; ⇔ Bicondicional
+
+;; Si se Importa, se puede usar como algebra booleana creando funciones booleanas
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; 2.                 ;;
+;; Variables y Scopes ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Hay muchas formas de definir una variable
+
+;; Mathscript tiene un detector que indica que si no se ha definido antes
+;; El primer uso del "=" sera una asignacion
+
+mi_variable = 10 ;; Funcionara Siempre y cuando sea su primera vez
+
+;; Pero esto impide la reasignacion
+;; Por suerte, Mathscript ha integrado la palabra clave "asignar" que sirve
+;; para asignar y reasignar siempre
+
+assign mi_otra_variable = 20 ;; Asigna el valor 20
+
+asg mi_variable = "42" ;; Reasigna el valor "42"
+
+;; Pero siempre se puede usar el operador de definicion 
+
+var_3 := 54
+
+;; Mathscript NO es un lenguaje de tipado, por lo tanto, asignar un tipo de
+;; dato diferente, no causa ningun error
+
+var_3 := "retipable" ;; Puedes ajustar el tipado desde la version 1.2
+;; Al activarlo, puedes determinar que tipo de datos soporta la variable
+;; Dara un error para lo demas
+
+;; La diferencia entre la palabra clave de asignacion y el operador de 
+;; asignacion es que el ":=" sirve para definir un valor cualquiera "any()",
+;; y el otro no soporta eso
+
+;; Ya veremos el tipo Any
+
+;; Define una variable constante
+
+const assign variable_constante = 37 ;; El valor NO se puede cambiar denuevo
+
+;; TODAS las variables son locales hasta su scope
+;; Si se define fuera del scope, sera una variable global
+
+;; Define una variable global dentro de un scope
+
+global assign variable_global = {4,5,3}
+
+;; Subindices se permiten
+
+asg subindice~1 = 4 + 1
+
+;; las variables de mas de una letra distinta del "_", NO SERAN un polinomio
+;; valido
+
+polinomia := 42
+
+;; 3polinomia^2 ;; (3)(p)(2o)(l)(2i)(n)(m)(a al cuadrado)
+
+;; Para hacerlo BIEN, usa los operadores de multiplicacion y potencia normal
+
+3 * (polinomia) ^ 2 ;; 3 por (El valor de polinomia al cuadrado) 
+
+
