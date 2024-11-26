@@ -22,11 +22,10 @@ class Monomio {
 }
 let miMonomio = new Monomio(-3,{"x":2})
 
-console.log(miMonomio)
-
 class CustomNumber {
     constructor() {}
 }
-function sum(numbers) {
+
+class Fraction {
     
 }

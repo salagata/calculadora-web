@@ -40,7 +40,8 @@ function tokenizate(string) {
                 currentToken = "";
                 counterDecimal = 0 
             } 
-            if (/\+|\-|\*|\/|\(|\)/.test(token)) {
+            // ⌟
+            if (/\+|\-|\*|÷|\(|\)|\//.test(token)) {
                 if(/\-/.test(token)) {
                     if(/[0-9]+|\)|\s/.test(tokens.at(-1))) {
                         tokens.push("b-")
