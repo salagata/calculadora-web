@@ -1,4 +1,4 @@
-function infix2postfix(tokens) {
+function shuttingYard(tokens) {
     const stack1 = []
     const stack2 = [] 
     for (let i = 0; i < tokens.length; i++) {
@@ -88,10 +88,14 @@ function evaluatePostFix(tokens) {
         } else if (/\+|\-|\*|\//.test(token)) {
 
             switch (token) {
-                case "+":
+                case "b+":
                     p2 = stack.pop();
                     p1 = stack.pop();
                     stack.push(p1 + p2);
+                    break;
+                case "u+":
+                    p1 = stack.pop();
+                    stack.push(+p1);
                     break;
                 case "b-":
                     p2 = stack.pop();
@@ -164,5 +168,3 @@ console.log(evaluatePostFix([ '2', '2', 'u-', 'b-' ])); // Debería imprimir el 
 //     }
 //     return postFixExp
 // }
-
-console.log(evaluatePostFix(postFix));

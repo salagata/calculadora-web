@@ -12,15 +12,28 @@
     <label for="debug">Debug Mode:</label>
     <input type="checkbox" name="debug" id="debug">
     <dl id="output">
-        <dt>Tokens:</dt>
-        <dd id="tokens"></dd>
-        <dt>PostFix:</dt>
-        <dd id="postfix"></dd>
-        <dt>Evaluated:</dt>
-        <dd id="eval"></dd>
-        <dt>Format:</dt>
-        <dd id="format"></dd>
     </dl>
+    <div id="settings">
+        <h2>Settings</h2>
+        <form id="settings">
+            <label for="fix">
+                Fixed:
+            </label>
+            <input type="radio" name="notation" id="fix">
+            <br>
+            <label for="sci">
+                Scientific:
+            </label>
+            <input type="radio" name="notation" id="sci">
+            <br>
+            <label for="norm">
+                Normal:
+            </label>
+            <input type="radio" name="notation" id="norm" checked="true">
+            <div id="formatExtras">
+            </div>
+        </form>
+    </div>
     
     <script src="./scripts/stack.js"></script>
     <script src="./scripts/instruccion.js"></script>

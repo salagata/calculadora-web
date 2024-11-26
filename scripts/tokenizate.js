@@ -47,10 +47,16 @@ function tokenizate(string) {
                     } else {
                         tokens.push("u-")
                     }
+                } else if(/\+/.test(token)) {
+                    if(/[0-9]+|\)|\s/.test(tokens.at(-1))) {
+                        tokens.push("b+")
+                    } else {
+                        tokens.push("u+")
+                    }
                 } else {
-                    tokens.push(token);
+                    tokens.push(token)
                 }
-                 
+                
             } 
         }
     }
@@ -60,4 +66,4 @@ function tokenizate(string) {
     }
     return tokens
 }
-console.log(tokenizate("-2"))
+console.log(tokenizate("+2"))
