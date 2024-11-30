@@ -25,7 +25,3 @@ let miMonomio = new Monomio(-3,{"x":2})
 class CustomNumber {
     constructor() {}
 }
-
-class Fraction {
-    
-}

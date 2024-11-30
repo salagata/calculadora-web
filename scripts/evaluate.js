@@ -42,36 +42,41 @@ function evaluatePostFix(tokens) {
 
     for(const token of postFixExp ) {
         if (/[0-9]+/.test(token)) {
-            stack.push(Number(token));
+            stack.push(token);
         } else if (/\+|\-|\*|÷/.test(token)) {
 
             switch (token) {
                 case "b+":
-                    p2 = stack.pop();
-                    p1 = stack.pop();
+                    p2 = +stack.pop();
+                    p1 = +stack.pop();
                     stack.push(p1 + p2);
                     break;
                 case "u+":
-                    p1 = stack.pop();
-                    stack.push(+p1);
+                    p1 = +stack.pop();
+                    stack.push(p1);
                     break;
                 case "b-":
-                    p2 = stack.pop();
-                    p1 = stack.pop();
+                    p2 = +stack.pop();
+                    p1 = +stack.pop();
                     stack.push(p1 - p2);
                     break;
                 case "u-":
-                    p1 = stack.pop();
+                    p1 = +stack.pop();
                     stack.push(-p1);
                     break;
                 case "*":
-                    p2 = stack.pop();
-                    p1 = stack.pop();
+                    p2 = +stack.pop();
+                    p1 = +stack.pop();
                     stack.push(p1 * p2);
                     break;
-                case "÷":
-                    p2 = stack.pop();
-                    p1 = stack.pop();
+                case "/":
+                    p2 = +stack.pop();
+                    p1 = +stack.pop();
+                    stack.push(p1 / p2);
+                    break;
+                case "¬":
+                    p2 = +stack.pop();
+                    p1 = +stack.pop();
                     stack.push(p1 / p2);
                     break;
             }

@@ -41,7 +41,7 @@ function tokenizate(string) {
                 counterDecimal = 0 
             } 
             // ⌟
-            if (/\+|\-|\*|÷|\(|\)|\//.test(token)) {
+            if (/\+|\-|\*|\¬|\(|\)|\//.test(token)) {
                 if(/\-/.test(token)) {
                     if(/[0-9]+|\)|\s/.test(tokens.at(-1))) {
                         tokens.push("b-")
@@ -54,6 +54,12 @@ function tokenizate(string) {
                     } else {
                         tokens.push("u+")
                     }
+                } else if(/\¬/.test(token)) {
+                    if(/[0-9]+|\)|\s/.test(tokens.at(-1))) {
+                        tokens.push("b+")
+                    } else {
+                        tokens.push("u+")
+                    } 
                 } else {
                     tokens.push(token)
                 }
